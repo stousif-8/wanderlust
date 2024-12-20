@@ -16,7 +16,6 @@ export default {
               options: {
                 metaObjectReplacement: {
                   env: {
-                    // Replicate as .env.local
                     VITE_API_PATH: 'http://localhost:3001',
                   },
                 },
@@ -28,17 +27,12 @@ export default {
     ],
   },
   moduleNameMapper: {
-    // mocking assests and styling
     '\\.(gif|ttf|eot|svg|png|webp)$': '<rootDir>/config/jest/file-mock.ts',
     '^.+\\.(css|less|scss|sass)$': '<rootDir>/config/jest/style-mock.ts',
-
-    // making jest understand absolute paths
     '@/(.*)$': '<rootDir>/$1',
   },
   setupFilesAfterEnv: ['./config/jest/setup-tests.ts'],
   moduleFileExtensions: [
-    // Place tsx and ts to beginning as suggestion from Jest team
-    // https://jestjs.io/docs/configuration#modulefileextensions-arraystring
     'tsx',
     'ts',
     'web.js',
@@ -51,4 +45,12 @@ export default {
     'node',
   ],
   modulePaths: ['<rootDir>/src'],
+  collectCoverage: true, // Enable code coverage collection
+  coverageDirectory: './coverage', // Directory where coverage reports will be saved
+  coverageReporters: ['lcov', 'text'], // Generate lcov reports (required by SonarQube)
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}', // Collect coverage for all TypeScript files
+    '!**/node_modules/**', // Exclude node_modules
+    '!**/dist/**', // Exclude build directory
+  ],
 };
