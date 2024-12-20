@@ -1,5 +1,6 @@
+// jest.config.ts
 export default {
-  rootDir: 'src',
+  rootDir: '.', // Change this to the root of the project
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
@@ -45,12 +46,12 @@ export default {
     'node',
   ],
   modulePaths: ['<rootDir>/src'],
-  collectCoverage: true, // Enable code coverage collection
-  coverageDirectory: './coverage', // Directory where coverage reports will be saved
-  coverageReporters: ['lcov', 'text'], // Generate lcov reports (required by SonarQube)
+  collectCoverage: true,
+  coverageDirectory: './coverage',
+  coverageReporters: ['lcov', 'text'],
   collectCoverageFrom: [
-    '**/*.{ts,tsx}', // Collect coverage for all TypeScript files
-    '!**/node_modules/**', // Exclude node_modules
-    '!**/dist/**', // Exclude build directory
+    '**/*.{ts,tsx}',
+    '!**/node_modules/**',
+    '!**/dist/**',
   ],
 };
